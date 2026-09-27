@@ -54,7 +54,7 @@ was long enough. For that reason the script refuses to judge rather than report 
 
 | | |
 |---|---|
-| Rate | 40 in 4 772 201 native requests over three runs; 0 in 1 548 235 on the JVM ([results.md](results.md)) |
+| Rate | 53 in 6 150 052 native requests over four 20-minute runs; 0 in 2 585 862 on the JVM over two ([results.md](results.md)) |
 | Timing-dependent | in the service where it was found, the rate ranged from about 1 in 375 000 to 1 in 60 000, depending on what the handler did before answering. That looks like a race between completing the response and closing the connection. |
 | Not the application | the handler here is the whole server: no plugins, no content negotiation, nothing but `ktor-server-core` and `ktor-server-cio` |
 | Not the client | the JVM server under the same `curl` load never loses an answer |
