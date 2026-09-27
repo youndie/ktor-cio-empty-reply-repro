@@ -62,8 +62,11 @@ was long enough. For that reason the script refuses to judge rather than report 
 The 10 ms `delay` in the handler is part of the reproduction. It stands for the short piece of I/O the original
 handler did before answering, and the rate depends on that timing.
 
-A side observation, not what this repository measures: on `SIGTERM` the native server closes its listener, but its
-process does not exit. `SIGTERM` stays caught and blocked, and the process sleeps. Seen once, with Ktor 3.6.0 on
+With Ktor 3.5.2, every native client ends on a 30 s timeout within 20 s, so the run gives no verdict and that
+version cannot be rechecked with this load (results.md). 3.6.0 does not do this.
+
+A second side observation, not what this repository measures: on `SIGTERM` the native server closes its listener,
+but its process does not exit. `SIGTERM` stays caught and blocked, and the process sleeps. Seen once, with Ktor 3.6.0 on
 2026-09-27. `run.sh` gives the server ten seconds and then sends `SIGKILL`, after the load has ended.
 
 ## Licence
